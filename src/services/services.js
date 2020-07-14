@@ -56,7 +56,6 @@ const getProfile = async (fastify,getProfileRequest)=>{
 }
 
 
-
 module.exports = {
     signUpWithPassword,
     getProfile,
