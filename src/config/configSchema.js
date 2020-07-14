@@ -5,7 +5,7 @@ const configSchema = {
             "type": "object",
             "properties": {
                 "port": {
-                    "type": "integer"
+                    "type": "string"
                 },
                 "logLevel": {
                     "type": "string"
@@ -16,29 +16,6 @@ const configSchema = {
                 "logLevel"
             ]
         },
-        "awsS3": {
-                    "type": "object",
-                    "properties": {
-                        "BucketName": {
-                            "type": "string"
-                        },
-                        "accessKey": {
-                            "type": "string"
-                        },
-                        "secretKey": {
-                            "type": "string"
-                        },
-                        "apiVersion": {
-                            "type": "string"
-                        }
-                    },
-                    "required": [
-                        "BucketName",
-                        "accessKey",
-                        "secretKey",
-                        "apiVersion"
-                    ]
-                },
         "maxPaginationSize": {
             "type": "string"
         },
@@ -79,7 +56,6 @@ const configSchema = {
     },
     "required": [
         "server",
-        "aws",
         "maxPaginationSize",
         "environment",
         "mongodb"

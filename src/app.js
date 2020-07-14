@@ -47,7 +47,6 @@ mongoose.plugin((schema) => {
 });
 
 
-fastify.register(require('fastify-multipart'))
 // Register fastify axios
 fastify.register(require('fastify-axios'))
 
