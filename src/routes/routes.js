@@ -26,6 +26,13 @@ const routes = [
         schema: documentation.getProfile,
         preValidation: validators.validateGetProfileRequest
     },
+    {
+        method: "POST",
+        url: "/loginWithPassword",
+        handler: controllers.loginByPassword,
+        schema: documentation.loginByPassword,
+        preValidation: validators.validateLoginWithPassword
+    },
 ]
 
 

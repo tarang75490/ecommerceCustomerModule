@@ -6,6 +6,7 @@ const HttpError = require('../models/errors/httpError')
 exports.signUp= async (req, res) => {
     try {
         let response = await service.signUpWithPassword(req.fastify, req.body)
+        
         if(response.error){
             res.code(400)
                 throw new HttpError('faliure', 22005,response.error)
@@ -51,7 +52,7 @@ exports.getProfile= async (req, res) => {
             res.code(400)
                 throw new HttpError('faliure', 22005,response.error)
         }
-        return res.status(200).send({
+        return res.status(201).send({
             status: 'success',
             data: response
         })
@@ -61,4 +62,21 @@ exports.getProfile= async (req, res) => {
     }
 }
 
+
+exports.loginByPassword= async (req, res) => {
+    try {
+        let response = await service.loginByPassword(req.fastify, req.body)
+        if(response.error){
+            res.code(400)
+                throw new HttpError('faliure', 22005,response.error)
+        }
+        return res.status(200).send({
+            status: 'success',
+            data: response
+        })
+    } catch (e) {
+        res.code(500)
+        throw new HttpError('faliure', 2001, "Login Failed", e.message)
+    }
+}
 

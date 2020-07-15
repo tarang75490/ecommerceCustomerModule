@@ -13,8 +13,8 @@ const customerSchema = new mongoose.Schema({
     },
     mobileNo:{
         type:String,
-        max:10,
-        min:10,
+        maxlength:10,
+        minlength:10,
         required:true,
         unique:true
     },
@@ -46,7 +46,8 @@ const customerSchema = new mongoose.Schema({
     },
     otp:{
         type:String,
-        required:false,
+        default:""
+
     },
     tokens:[{
         token:{
@@ -54,5 +55,10 @@ const customerSchema = new mongoose.Schema({
         }
     }]
 })
+
+
+customerSchema.index({ email: 1, mobileNo: 1}, { unique: true });
+
+
 module.exports = mongoose.model("Customer",customerSchema)
 

@@ -28,7 +28,7 @@ exports.validateUpdateProfileRequest = function (req, res, done) {
     if (!req.query.customerId) {
         res.code(400)
         done(new HttpError('faliure', 20001, 'customerId or Email is missing'))
-    }else if (!(req.body.mobileNo || req.body.userName || req.body.password || req.body.email)) {
+    }else if (Object.keys(req.body).length ===0) {
         res.code(400)
         done(new HttpError('faliure', 20001, 'Username,mobile,passsword,email update Allowed'))
     }else{
@@ -42,6 +42,20 @@ exports.validateGetProfileRequest = function (req, res, done) {
         res.code(400)
         done(new HttpError('faliure', 20001, 'customerId  is missing'))
     }else{
+        done()
+    }
+}
+
+
+exports.validateLoginWithPassword = function (req, res, done) {
+    if (!req.body.password ) {
+        res.code(400)
+        done(new HttpError('faliure', 20001, 'Password Required'))
+    }else if (!(req.body.email || req.body.mobileNo)) {
+        res.code(400)
+        done(new HttpError('faliure', 20001, 'Email or Phone No  is  required'))
+    }
+    else{
         done()
     }
 }
