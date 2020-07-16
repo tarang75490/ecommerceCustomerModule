@@ -16,6 +16,9 @@ const configSchema = {
                 "logLevel"
             ]
         },
+        "privateKey": {
+            "type": "string"
+        },
         "maxPaginationSize": {
             "type": "string"
         },
@@ -58,7 +61,8 @@ const configSchema = {
         "server",
         "maxPaginationSize",
         "environment",
-        "mongodb"
+        "mongodb",
+        "privateKey"
     ]
 }
 

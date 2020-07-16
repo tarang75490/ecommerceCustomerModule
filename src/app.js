@@ -23,6 +23,8 @@ var options = {
   useCreateIndex: true,
  
 }
+
+
 mongoose.connect(mongodbConfig.baseURL + mongodbConfig.dbName, options)
   .then(() => {
     fastify.log.info('MongoDB connected...')

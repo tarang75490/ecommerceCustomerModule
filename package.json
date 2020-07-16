@@ -17,6 +17,7 @@
     "fastify": "^3.0.2",
     "fastify-axios": "^1.1.2",
     "fastify-swagger": "^3.1.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.23",
     "schema": "^0.2.1",
     "validator": "^13.1.1"

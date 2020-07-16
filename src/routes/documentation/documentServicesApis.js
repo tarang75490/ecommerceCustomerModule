@@ -31,6 +31,9 @@ exports.updateProfile = {
             },
             "otpVerified": {
                 "type": "boolean"
+            },
+            "token":{
+                "type":"string"
             }
         },
         "required": [
@@ -83,6 +86,9 @@ exports.updateProfile = {
                         "faceBookId":{
                             "type":"string"
                         },
+                        "token":{
+                            "type":"string"
+                        }
                     },
                     "required": [
                         "email",
@@ -356,6 +362,7 @@ exports.signUpWithPassword = {
                         "faceBookId":{
                             "type":"string"
                         },
+        
                     },
                     "required": [
                         "email",
@@ -470,9 +477,6 @@ exports.loginByPassword = {
                         "email": {
                             "type": "string"
                         },
-                        "password": {
-                            "type": "string"
-                        },
                         "otpVerified": {
                             "type": "boolean",
                             "default":false
@@ -492,14 +496,132 @@ exports.loginByPassword = {
                         "faceBookId":{
                             "type":"string"
                         },
+                        "token":{
+                            "type":"string"
+                        }
                     },
                     "required": [
                         "email",
                         "mobileNo",
                         "customerId",
                         "userName",
-                        "password",
                         "otpVerified",
+                    ]
+            }
+            },
+            "required": [
+                "status",
+                "data"
+            ]
+        },
+        400: {
+            "description": 'Error response',
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "integer"
+                },
+                "errorCause": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "status",
+                "message",
+                "code"
+            ]
+        },
+        500: {
+            "description": 'Error response',
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "integer"
+                },
+                "errorCause": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "status",
+                "message",
+                "code",
+                "errorCause"
+            ]
+        }
+    }
+}
+
+exports.customerFeedback = {
+    description: 'Give Feedback on Product',
+    tags: ['Customer'],
+    summary: 'Feedback',
+    body: {
+        "type": "object",
+        "properties": {
+            "customerId": {
+                "type": "string"
+            },
+            "productId": {
+                "type": "string"
+            },
+            "rating": {
+                "type": "number"
+            },
+            "feedback":{
+                "type":"string"
+            }
+        },
+        "required": [
+            "customerId",
+            "productId",
+            "rating",
+        ]
+    },
+    response: {
+        200: {
+            description: 'Successful response',
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string",
+                    "enum": ['failiure', 'success'],
+                },
+                "message": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "object",
+                    "properties": {
+                        "customerId": {
+                            "type": "string"
+                        },
+                        "productId": {
+                            "type": "string"
+                        },
+                        "rating": {
+                            "type": "number"
+                        },
+                        "feedback":{
+                            "type":"string"
+                        }
+                    },
+                    "required": [
+                        "customerId",
+                        "productId",
+                        "rating",
                     ]
             }
             },

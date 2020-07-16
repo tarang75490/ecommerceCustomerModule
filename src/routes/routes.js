@@ -33,6 +33,14 @@ const routes = [
         schema: documentation.loginByPassword,
         preValidation: validators.validateLoginWithPassword
     },
+    {
+        method: "POST",
+        url: "/customerFeedback",
+        handler: controllers.customerFeedback,
+        schema: documentation.customerFeedback,
+        preValidation: validators.validateCustomerFeedback
+    },
+
 ]
 
 

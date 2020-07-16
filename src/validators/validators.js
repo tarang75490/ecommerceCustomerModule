@@ -59,3 +59,20 @@ exports.validateLoginWithPassword = function (req, res, done) {
         done()
     }
 }
+
+
+exports.validateCustomerFeedback = function (req, res, done) {
+    if (req.body.rating === null) {
+        res.code(400)
+        done(new HttpError('faliure', 20001, 'rating is required'))
+    }else if (!(req.body.productId)) {
+        res.code(400)
+        done(new HttpError('faliure', 20001, 'ProductId  is  required'))
+    }else if (!(req.body.customerId)) {
+        res.code(400)
+        done(new HttpError('faliure', 20001, 'CustomerId  is  required'))
+    }
+    else{
+        done()
+    }
+}
