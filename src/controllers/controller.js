@@ -44,6 +44,24 @@ exports.updateProfile= async (req, res) => {
 }
 
 
+exports.updateToken = async (req, res) => {
+    try {
+        let response = await service.updateToken(req.fastify, req.body)
+        if(response.error){
+            res.code(400)
+                throw new HttpError('faliure', 22005,response.error)
+        }
+        return res.status(200).send({
+            status: 'success',
+            data: response
+        })
+    } catch (e) {
+        res.code(500)
+        throw new HttpError('faliure', 2001, "Update Token Failed", e.message)
+    }
+}
+
+
 
 exports.getProfile= async (req, res) => {
     try {
@@ -63,9 +81,9 @@ exports.getProfile= async (req, res) => {
 }
 
 
-exports.loginByPassword= async (req, res) => {
+exports.checkCredentials= async (req, res) => {
     try {
-        let response = await service.loginByPassword(req.fastify, req.body)
+        let response = await service.checkCredentials(req.fastify, req.body)
         if(response.error){
             res.code(400)
                 throw new HttpError('faliure', 22005,response.error)

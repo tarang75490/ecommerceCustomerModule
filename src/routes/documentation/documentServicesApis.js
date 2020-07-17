@@ -219,6 +219,7 @@ exports.getProfile = {
                             "faceBookId":{
                                 "type":"string"
                             },
+                    
                         },
                         "required": [
                             "email",
@@ -429,7 +430,7 @@ exports.signUpWithPassword = {
     }
 }
 
-exports.loginByPassword = {
+exports.checkCredentials = {
     description: 'Login With Password',
     tags: ['Customer'],
     summary: 'LOgin',
@@ -498,7 +499,10 @@ exports.loginByPassword = {
                         },
                         "token":{
                             "type":"string"
-                        }
+                        },
+                        // "_id":{
+                        //     "type":"string"
+                        // }
                     },
                     "required": [
                         "email",
@@ -506,6 +510,7 @@ exports.loginByPassword = {
                         "customerId",
                         "userName",
                         "otpVerified",
+                        // "_id"
                     ]
             }
             },
@@ -680,3 +685,133 @@ exports.customerFeedback = {
     }
 }
 
+exports.updateToken = {
+    description: 'Update the Token',
+    tags: ["Customer"],
+    summary: 'Update',
+    body:{
+        "type": "object",
+        "properties": {
+            "customerId": {
+                "type": "string"
+            },
+            "token": {
+                "type": "string"
+            },
+    
+        },
+        "required": [
+            "customerId",
+            "token"
+        ]
+    },
+    response: {
+        200: {
+            description: 'Successful response',
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string",
+                    "enum": ['failiure', 'success'],
+                },
+                "message": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "object",
+                    "properties": {
+                        "customerId":{
+                            "type": "string"
+                        },
+                        "userName": {
+                            "type": "string"
+                        },
+                        "mobileNo": {
+                            "type": "string"
+                        },
+                        "email": {
+                            "type": "string"
+                        },
+                        "otpVerified": {
+                            "type": "boolean",
+                            "default":false
+                        },
+                        "markForDelete":{
+                            "type":"boolean",
+                            "default":false
+                        },
+                        "otp":{
+                            "type":"string"
+                        },
+                        "googleId":{
+                            "type":"string"
+                        },
+                        "faceBookId":{
+                            "type":"string"
+                        },
+               
+                    },
+                    "required": [
+                        "email",
+                        "mobileNo",
+                        "customerId",
+                        "userName",
+                        "otpVerified",
+                        "markForDelete"
+                    ]
+
+                }
+            },
+            "required": [
+                "status",
+                "data"
+            ]
+        }, 400: {
+            "description": 'Error response',
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "integer"
+                },
+                "errorCause": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "status",
+                "message",
+                "code"
+            ]
+        },
+        500: {
+            "description": 'Error response',
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "integer"
+                },
+                "errorCause": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "status",
+                "message",
+                "code",
+                "errorCause"
+            ]
+        }
+    }
+}

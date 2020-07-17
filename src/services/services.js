@@ -3,19 +3,6 @@ const Collection = require("../models/Collection")
 const Feedback = require('../models/Feedback')
 const jwt = require('jsonwebtoken')
 const config = require('../config/index')
-const generate_token = async (customer) => {
-    
-    const token = jwt.sign({_id : customer._id.toString()},config.privateKey,{expiresIn:'7 days'})
-    
-    console.log(token)
-
-    const data = jwt.verify(token,'thisismyprivatekey')
-    console.log(data)
-    return token
-
-}
-
-
 
 
 const signUpWithPassword = async (fastify,signUpRequest)=>{
@@ -59,17 +46,9 @@ const updateProfile = async (fastify,updateProfileRequest)=>{
     let toUpdateProperties = Object.keys(updateProfileRequest.body)
     // console.log(toUpdateProperties)
     let token;
-    toUpdateProperties.forEach(async (property)=>{
-        // console.log(updateProfileRequest.body[property])
-           
+    toUpdateProperties.forEach(async (property)=>{   
             customer[property] = updateProfileRequest.body[property]
     })
-    if (updateProfileRequest.body.otpVerified){
-        console.log(customer.tokens)
-        console.log(updateProfileRequest.body.otpVerified)
-        token = await generate_token(customer)
-        customer.tokens = customer.tokens.concat({token})
-    }
     console.log(customer)
     customer = await new Customer(customer).save()
     customer = customer._doc
@@ -84,6 +63,19 @@ const updateProfile = async (fastify,updateProfileRequest)=>{
 
     return customer
 }
+const updateToken = async (fastify,updateTokenRequest) => {
+    let customer = await Customer.findOne({customerId : updateTokenRequest.customerId})
+    customer.tokens = customer.tokens.concat({token : updateTokenRequest.token})
+    if (!customer.otpVerified){
+        customer.otpVerified = true
+    }
+    customer =  await new Customer(customer).save()
+    customer = customer._doc
+    delete customer.password
+    delete customer.tokens
+    return customer
+}
+
 
 const getProfile = async (fastify,getProfileRequest)=>{
     const customer = await Customer.findOne(getProfileRequest)
@@ -97,33 +89,17 @@ const getProfile = async (fastify,getProfileRequest)=>{
 }
 
 
-const loginByPassword = async (fastify,loginRequest) => {
+const checkCredentials = async (fastify,loginRequest) => {
     let customer = await Customer.findOne(loginRequest)
     if(!customer){
         return {
             error : "Crendential Wrong"
         }
     }
-    let token;
-    if (customer.otpVerified){
-        token = await generate_token(customer)
-        customer.tokens = customer.tokens.concat({token})
-        customer = await new Customer(customer).save()
-        customer = customer._doc
-    }
-    
-    delete customer.password
-    if(token){
-    delete customer.tokens
-    console.log(customer)
-    customer = {
-        ...customer,
-        token:token
-    }
+    // console.log(customer)
+    return customer
 }
-    console.log(customer)
-    return await customer
-}
+
 
 
 
@@ -147,6 +123,7 @@ module.exports = {
     signUpWithPassword,
     getProfile,
     updateProfile,
-    loginByPassword,
+    updateToken,
+    checkCredentials,
     customerFeedback
 }

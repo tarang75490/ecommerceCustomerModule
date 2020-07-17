@@ -28,10 +28,10 @@ const routes = [
     },
     {
         method: "POST",
-        url: "/loginWithPassword",
-        handler: controllers.loginByPassword,
-        schema: documentation.loginByPassword,
-        preValidation: validators.validateLoginWithPassword
+        url: "/checkCredentials",
+        handler: controllers.checkCredentials,
+        schema: documentation.checkCredentials,
+        preValidation: validators.validatecheckCredentials
     },
     {
         method: "POST",
@@ -39,6 +39,13 @@ const routes = [
         handler: controllers.customerFeedback,
         schema: documentation.customerFeedback,
         preValidation: validators.validateCustomerFeedback
+    },
+    {
+        method: "POST",
+        url: "/updateToken",
+        handler: controllers.updateToken,
+        schema: documentation.updateToken,
+        preValidation: validators.validateUpdateToken
     },
 
 ]

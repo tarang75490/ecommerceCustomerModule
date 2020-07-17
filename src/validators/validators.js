@@ -47,7 +47,7 @@ exports.validateGetProfileRequest = function (req, res, done) {
 }
 
 
-exports.validateLoginWithPassword = function (req, res, done) {
+exports.validatecheckCredentials = function (req, res, done) {
     if (!req.body.password ) {
         res.code(400)
         done(new HttpError('faliure', 20001, 'Password Required'))
@@ -71,6 +71,21 @@ exports.validateCustomerFeedback = function (req, res, done) {
     }else if (!(req.body.customerId)) {
         res.code(400)
         done(new HttpError('faliure', 20001, 'CustomerId  is  required'))
+    }
+    else{
+        done()
+    }
+}
+
+
+
+exports.validateUpdateToken = function (req, res, done) {
+    if (!req.body.customerId) {
+        res.code(400)
+        done(new HttpError('faliure', 20001, 'CustomerId is required'))
+    }else if (!(req.body.token)) {
+        res.code(400)
+        done(new HttpError('faliure', 20001, 'Token  is  required'))
     }
     else{
         done()
