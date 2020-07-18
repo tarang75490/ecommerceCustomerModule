@@ -45,21 +45,12 @@ const updateProfile = async (fastify,updateProfileRequest)=>{
     // console.log(updateProfileRequest.body)
     let toUpdateProperties = Object.keys(updateProfileRequest.body)
     // console.log(toUpdateProperties)
-    let token;
     toUpdateProperties.forEach(async (property)=>{   
             customer[property] = updateProfileRequest.body[property]
     })
     console.log(customer)
     customer = await new Customer(customer).save()
     customer = customer._doc
-    if(token){
-        delete customer.tokens
-        console.log(customer)
-        customer = {
-            ...customer,
-            token:token
-        }
-    }
 
     return customer
 }
