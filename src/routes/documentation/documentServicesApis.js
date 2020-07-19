@@ -86,9 +86,9 @@ exports.updateProfile = {
                         "faceBookId":{
                             "type":"string"
                         },
-                        "token":{
-                            "type":"string"
-                        }
+                        // "token":{
+                        //     "type":"string"
+                        // }
                     },
                     "required": [
                         "email",

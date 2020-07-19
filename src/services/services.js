@@ -38,7 +38,6 @@ const signUpWithPassword = async (fastify,signUpRequest)=>{
 const updateProfile = async (fastify,updateProfileRequest)=>{
     let customer = await getProfile(fastify,updateProfileRequest.query)
     // console.log(updateProfileRequest)
-    console.log(customer)
     if(customer.error){
         return customer
     }
@@ -48,11 +47,18 @@ const updateProfile = async (fastify,updateProfileRequest)=>{
     toUpdateProperties.forEach(async (property)=>{   
             customer[property] = updateProfileRequest.body[property]
     })
-    console.log(customer)
-    customer = await new Customer(customer).save()
+    
+    customer =   await new Customer(customer).save()    
+    
     customer = customer._doc
 
+
+    delete customer.tokens
+    delete customer._id
+    delete customer.__v
+    console.log(customer)
     return customer
+    
 }
 const updateToken = async (fastify,updateTokenRequest) => {
     let customer = await Customer.findOne({customerId : updateTokenRequest.customerId})
