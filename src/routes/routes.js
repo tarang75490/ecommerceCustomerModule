@@ -47,6 +47,20 @@ const routes = [
         schema: documentation.updateToken,
         preValidation: validators.validateUpdateToken
     },
+    {
+        method: "POST",
+        url: "/saveCustomerHistory",
+        handler: controllers.saveCustomerHistory,
+        schema: documentation.saveCustomerHistory,
+        preValidation: validators.validateSaveCustomerHistory
+    },
+    {
+        method: "GET",
+        url: "/getCustomerHistory",
+        handler: controllers.getCustomerHistory,
+        schema: documentation.getCustomerHistory,
+        preValidation: validators.validateGetCustomerHistory
+    },
 
 ]
 

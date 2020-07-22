@@ -91,3 +91,29 @@ exports.validateUpdateToken = function (req, res, done) {
         done()
     }
 }
+
+exports.validateSaveCustomerHistory = function (req, res, done) {
+    if (!req.body.customerId) {
+        res.code(400)
+        done(new HttpError('faliure', 20001, 'CustomerId is required'))
+    }else if (req.body.transactionDetails.length<= 0) {
+        res.code(400)
+        done(new HttpError('faliure', 20001, 'Transaction Details is  required'))
+    }else if (!req.body.totalAmount) {
+        res.code(400)
+        done(new HttpError('faliure', 20001, 'TotalAmount  is  required'))
+    } 
+    else{
+        done()
+    }
+}
+
+exports.validateGetCustomerHistory = function (req, res, done) {
+    if (!req.query.customerId) {
+        res.code(400)
+        done(new HttpError('faliure', 20001, 'CustomerId is required'))
+    }
+    else{
+        done()
+    }
+}

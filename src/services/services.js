@@ -1,6 +1,7 @@
 const Customer = require("../models/Customers")
 const Collection = require("../models/Collection")
 const Feedback = require('../models/Feedback')
+const History  = require("../models/History")
 const jwt = require('jsonwebtoken')
 const config = require('../config/index')
 
@@ -116,11 +117,26 @@ const customerFeedback = async(fastify,feedbackRequest) => {
 
 }
 
+const saveCustomerHistory = async(fastify,saveCustomerHistoryRequest) =>{
+    const histories = await new History(saveCustomerHistoryRequest).save()
+    return histories
+}
+
+
+
+
+const getCustomerHistory = async(fastify,getCustomerHistoryRequest) =>{
+    const histories = await History.find(getCustomerHistoryRequest)
+    return histories
+}
+
 module.exports = {
     signUpWithPassword,
     getProfile,
     updateProfile,
     updateToken,
     checkCredentials,
-    customerFeedback
+    customerFeedback,
+    saveCustomerHistory,
+    getCustomerHistory
 }

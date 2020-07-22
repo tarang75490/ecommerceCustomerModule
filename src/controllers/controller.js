@@ -119,3 +119,44 @@ exports.customerFeedback = async (req,res)=>{
         throw new HttpError('faliure', 2001, "Unable to save customer Feedback", e.message)
     }
 }
+
+
+exports.saveCustomerHistory = async (req,res)=>{
+    try{
+
+        let response = await service.saveCustomerHistory(req.fastify, req.body)
+        if(response.error){
+            res.code(400)
+                throw new HttpError('faliure', 22005,response.error)
+        }
+        return res.status(201).send({
+            status: 'success',
+            data: response
+        })
+
+    }
+    catch(e){
+        res.code(500)
+        throw new HttpError('faliure', 2001, "Unable to save customer History", e.message)
+    }
+}
+
+exports.getCustomerHistory = async (req,res)=>{
+    try{
+
+        let response = await service.getCustomerHistory(req.fastify, req.query)
+        if(response.error){
+            res.code(400)
+                throw new HttpError('faliure', 22005,response.error)
+        }
+        return res.status(200).send({
+            status: 'success',
+            data: response
+        })
+
+    }
+    catch(e){
+        res.code(500)
+        throw new HttpError('faliure', 2001, "Failed to get Customer History", e.message)
+    }
+}

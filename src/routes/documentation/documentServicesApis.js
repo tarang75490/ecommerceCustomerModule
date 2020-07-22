@@ -815,3 +815,381 @@ exports.updateToken = {
         }
     }
 }
+
+
+
+
+
+
+exports.saveCustomerHistory = {
+    description: 'Save Customer Transaction Details',
+    tags: ["Customer"],
+    summary: 'Save',
+    body:{
+        "type": "object",
+        "properties": {
+            "customerId": {
+                "type": "string"
+            },
+            "transactionDetails": {
+                "type": "array",
+                "items":{
+                    "type":"object",
+                    "properties":{
+
+                        "customerId": {
+                            "type": "string"
+                        },
+                        "variantId": {
+                            "type": "string"
+                        },
+                        "productId": {
+                            "type": "string"
+                        },
+                        "productName": {
+                            "type": "string"
+                        },
+                        "price": {
+                            "type": "number"
+                        },
+                        "quantity": {
+                            "type": "number"
+                        },
+                        "mainCategory": {
+                            "type": "string"
+                        },
+                        "subCategory": {
+                            "type": "string"
+                        },
+                        "size": {
+                            "type": "string"
+                        },
+                        "customerId": {
+                            "type": "string"
+                        },
+                        "quantityToBuy":{
+                            "type":"number"
+                        }
+
+                    },
+
+                    "required": [
+                        "customerId",
+                        "variantId",
+                        "productId",
+                        "productName",
+                        "price",
+                        "quantity",
+                        "mainCategory",
+                        "subCategory",
+                        "quantityToBuy"
+                    ]
+                }
+            },
+            "totalAmount": {
+                "type": "number"
+            },
+    
+        },
+        "required": [
+            "customerId",
+            "transactionDetails",
+            "totalAmount"
+        ]
+    },
+    response: {
+        201: {
+            description: 'Successful response',
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string",
+                    "enum": ['failiure', 'success'],
+                },
+                "message": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "object",
+                    "properties": {
+                        "customerId": {
+                            "type": "string"
+                        },
+                        "transactionDetails": {
+                            "type": "array",
+                            "items":{
+                                "type":"object",
+                                "properties":{
+
+                                    "customerId": {
+                                        "type": "string"
+                                    },
+                                    "variantId": {
+                                        "type": "string"
+                                    },
+                                    "productId": {
+                                        "type": "string"
+                                    },
+                                    "productName": {
+                                        "type": "string"
+                                    },
+                                    "price": {
+                                        "type": "number"
+                                    },
+                                    "quantity": {
+                                        "type": "number"
+                                    },
+                                    "mainCategory": {
+                                        "type": "string"
+                                    },
+                                    "subCategory": {
+                                        "type": "string"
+                                    },
+                                    "size": {
+                                        "type": "string"
+                                    },
+                                    "customerId": {
+                                        "type": "string"
+                                    },
+                                    "quantityToBuy":{
+                                        "type":"number"
+                                    }
+    
+                                },
+    
+                                "required": [
+                                    "customerId",
+                                    "variantId",
+                                    "productId",
+                                    "productName",
+                                    "price",
+                                    "quantity",
+                                    "mainCategory",
+                                    "subCategory",
+                                    "quantityToBuy"
+                                ]
+                            }
+                        },
+                        "totalAMount": {
+                            "type": "number"
+                        },
+                
+                    },
+                    "required": [
+                        "customerId",
+                        "transactionDetails",
+                        "totalAmount"
+                    ]
+            },
+        },
+            "required": [
+                "status",
+                "data"
+            ]
+        }, 400: {
+            "description": 'Error response',
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "integer"
+                },
+                "errorCause": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "status",
+                "message",
+                "code"
+            ]
+        },
+        500: {
+            "description": 'Error response',
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "integer"
+                },
+                "errorCause": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "status",
+                "message",
+                "code",
+                "errorCause"
+            ]
+        }
+    }
+}
+
+
+exports.getCustomerHistory = {
+    description: 'Get Customer Transaction Details',
+    tags: ["Customer"],
+    summary: 'Save',
+    query:{
+        "type": "object",
+        "properties": {
+            "customerId": {
+                "type": "string"
+            },
+        },
+        "required": [
+            "customerId",
+        ]
+    },
+    response: {
+        200: {
+            description: 'Successful response',
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string",
+                    "enum": ['failiure', 'success'],
+                },
+                "message": {
+                    "type": "string"
+                },
+                "data": {
+                    "type":"array",
+                    "items":{
+                        "type": "object",
+                        "properties": {
+                            "customerId": {
+                                "type": "string"
+                            },
+                            "transactionDetails": {
+                                "type": "array",
+                                "items":{
+                                    "type":"object",
+                                    "properties":{
+
+                                        "customerId": {
+                                            "type": "string"
+                                        },
+                                        "variantId": {
+                                            "type": "string"
+                                        },
+                                        "productId": {
+                                            "type": "string"
+                                        },
+                                        "productName": {
+                                            "type": "string"
+                                        },
+                                        "price": {
+                                            "type": "number"
+                                        },
+                                        "quantity": {
+                                            "type": "number"
+                                        },
+                                        "mainCategory": {
+                                            "type": "string"
+                                        },
+                                        "subCategory": {
+                                            "type": "string"
+                                        },
+                                        "size": {
+                                            "type": "string"
+                                        },
+                                        "customerId": {
+                                            "type": "string"
+                                        },
+                                        "quantityToBuy":{
+                                            "type":"number"
+                                        }
+        
+                                    },
+        
+                                    "required": [
+                                        "customerId",
+                                        "variantId",
+                                        "productId",
+                                        "productName",
+                                        "price",
+                                        "quantity",
+                                        "mainCategory",
+                                        "subCategory",
+                                        "quantityToBuy"
+                                    ]
+                                }
+                            },
+                            "totalAmount": {
+                                "type": "number"
+                            },
+                    
+                        },
+                        "required": [
+                            "customerId",
+                            "transactionDetails",
+                            "totalAmount"
+                        ]
+                    }
+            },
+        },
+            "required": [
+                "status",
+                "data"
+            ]
+        }, 400: {
+            "description": 'Error response',
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "integer"
+                },
+                "errorCause": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "status",
+                "message",
+                "code"
+            ]
+        },
+        500: {
+            "description": 'Error response',
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string"
+                },
+                "code": {
+                    "type": "integer"
+                },
+                "errorCause": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "status",
+                "message",
+                "code",
+                "errorCause"
+            ]
+        }
+    }
+}
