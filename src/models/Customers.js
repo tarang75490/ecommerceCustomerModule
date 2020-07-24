@@ -12,9 +12,9 @@ const customerSchema = new mongoose.Schema({
         required:true
     },
     mobileNo:{
-        type:String,
-        maxlength:10,
-        minlength:10,
+        type:Number,
+        max:9999999999,
+        min:1000000000,
         required:true,
         unique:true
     },

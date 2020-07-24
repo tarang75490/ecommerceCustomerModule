@@ -21,7 +21,7 @@ exports.updateProfile = {
                 "type": "string"
             },
             "mobileNo": {
-                "type": "string"
+                "type": "number"
             },
             "email": {
                 "type": "string"
@@ -61,7 +61,7 @@ exports.updateProfile = {
                             "type": "string"
                         },
                         "mobileNo": {
-                            "type": "string"
+                            "type": "number"
                         },
                         "email": {
                             "type": "string"
@@ -194,7 +194,7 @@ exports.getProfile = {
                                 "type": "string"
                             },
                             "mobileNo": {
-                                "type": "string"
+                                "type": "number"
                             },
                             "email": {
                                 "type": "string"
@@ -298,7 +298,7 @@ exports.signUpWithPassword = {
                 "type": "string"
             },
             "mobileNo": {
-                "type": "string"
+                "type": "number"
             },
             "email": {
                 "type": "string"
@@ -336,7 +336,7 @@ exports.signUpWithPassword = {
                             "type": "string"
                         },
                         "mobileNo": {
-                            "type": "string"
+                            "type": "number"
                         },
                         "email": {
                             "type": "string"
@@ -444,7 +444,7 @@ exports.checkCredentials = {
                 "type": "string"
             },
             "mobileNo": {
-                "type": "string"
+                "type": "number"
             },
         },
         "required": [
@@ -473,7 +473,7 @@ exports.checkCredentials = {
                             "type": "string"
                         },
                         "mobileNo": {
-                            "type": "string"
+                            "type": "number"
                         },
                         "email": {
                             "type": "string"
@@ -727,7 +727,7 @@ exports.updateToken = {
                             "type": "string"
                         },
                         "mobileNo": {
-                            "type": "string"
+                            "type": "number"
                         },
                         "email": {
                             "type": "string"
