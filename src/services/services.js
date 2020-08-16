@@ -88,10 +88,24 @@ const getProfile = async (fastify,getProfileRequest)=>{
 
 
 const checkCredentials = async (fastify,loginRequest) => {
-    let customer = await Customer.findOne(loginRequest)
+    let LoginRequest;
+    if(loginRequest.mobileNo){
+        LoginRequest={
+            mobileNo:loginRequest.mobileNo
+        }
+    }else{
+        LoginRequest={
+            email:loginRequest.email
+        }
+    }
+    let customer = await Customer.findOne(LoginRequest)
     if(!customer){
         return {
-            error : "Crendential Wrong"
+            error : "Account Not Registered"
+        }
+    }else if(customer.password !== loginRequest.password){
+        return {
+            error : "Wrong Credentials"
         }
     }
     // console.log(customer)

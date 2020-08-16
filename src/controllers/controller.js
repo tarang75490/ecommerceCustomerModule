@@ -8,15 +8,17 @@ exports.signUp= async (req, res) => {
         let response = await service.signUpWithPassword(req.fastify, req.body)
         
         if(response.error){
-            res.code(400)
-                throw new HttpError('faliure', 22005,response.error)
+            return res.status(200).send({
+                status: 'failure',
+                data: response.error
+            })
         }
         return res.status(201).send({
             status: 'success',
             data: response
         })
     } catch (e) {
-        res.code(500)
+        res.code(400)
         throw new HttpError('faliure', 2001, "SignUp User Failed", e.message)
     }
 }

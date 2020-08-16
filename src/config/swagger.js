@@ -14,8 +14,8 @@ exports.options = {
       url: 'https://swagger.io',
       description: 'Find more info here'
     },
-    host: 'localhost:'+keys.server.port, 
-    // host: 'colossalcustomer.herokuapp.com',
+    // host: 'localhost:'+keys.server.port, 
+    host: 'colossalcustomer.herokuapp.com',
     schemes: ['http'],
     consumes: ['application/json'],
     produces: ['application/json']

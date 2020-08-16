@@ -1130,6 +1130,10 @@ exports.getCustomerHistory = {
                             "totalAmount": {
                                 "type": "number"
                             },
+                            "createdAt":{
+                                "type":"string"
+                            }
+                       
                     
                         },
                         "required": [

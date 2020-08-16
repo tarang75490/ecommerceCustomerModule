@@ -58,6 +58,27 @@ const swagger = require('./config/swagger')
 // Register Swagger
 fastify.register(require('fastify-swagger'), swagger.options)
 
+//cross-origin  
+fastify.register(require('fastify-cors'), {
+  origin: '*',
+});
+
+
+
+
+fastify.addContentTypeParser('application/json', { parseAs: 'string' }, (req, body, done) => {
+  try {
+    const json = JSON.parse(body);
+    console.log(json)
+    done(null, json);
+  } catch (err) {
+    err.statusCode = 400;
+    done(err, undefined);
+  }
+}); 
+
+
+
 // Import Routes
 const routes = require('./routes/routes.js')
 routes.forEach((route, index) => {
